@@ -8,6 +8,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -64,7 +65,7 @@ public class testAula {
 
 		aula1.agregar(alumno2);
 
-		assertEquals(alumno2, aula1.consultar("40674891"));
+		assertEquals(alumno2, aula1.consultar(40674891));
 	}
 
 	@Test
@@ -79,8 +80,8 @@ public class testAula {
 
 		aula1.modificar("40674891", alumno1);
 
-		assertEquals("Roberto", alumno2.getNombre());
-		assertEquals("Perez", alumno2.getApellido());
+		assertEquals("Lucas", alumno2.getNombre());
+		assertEquals("Lacqua", alumno2.getApellido());
 
 	}
 
@@ -120,6 +121,42 @@ public class testAula {
 
 		assertEquals(valorEsperado, valorObtenido);
 	}
-	
-	
+
+	@Test
+	public void testAula7() {
+
+		Alumno alumno1 = new Alumno("Roberto", "Perez", 123456789);
+		Alumno alumno2 = new Alumno("Lucas", "Lacqua", 40674891);
+		Alumno alumno3 = new Alumno("Benja", "Selser", 123124125);
+		Alumno alumno4 = new Alumno("Agustin", "Agus", 123456333);
+
+		Aula aula1 = new Aula(5);
+
+		aula1.agregar(alumno1);
+		aula1.agregar(alumno2);
+		aula1.agregar(alumno3);
+		aula1.agregar(alumno4);
+
+		HashMap<String, Alumno> hashMap = new HashMap<String, Alumno>();
+
+		for (Alumno id : aula1.getListaAlumno()) {
+
+			hashMap.put(id.getApellido(), id);
+
+		}
+
+		for (Entry<String, Alumno> entry : hashMap.entrySet()) {
+
+			String key = entry.getKey();
+			Alumno value = entry.getValue();
+
+			System.out.println("Key: " + key + ". Value: " + value);
+		}
+
+		Integer valorObtenido = hashMap.size();
+		Integer valorEsperado = 4;
+
+		assertEquals(valorEsperado, valorObtenido);
+
+	}
 }

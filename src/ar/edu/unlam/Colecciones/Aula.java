@@ -43,7 +43,7 @@ public class Aula {
 		return false;
 	}
 	
-	public Alumno consultar(String dni) {
+	public Alumno consultar(Integer dni) {
 		
 		for (Alumno id : listaAlumno) {
 			
